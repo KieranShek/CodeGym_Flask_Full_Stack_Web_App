@@ -44,6 +44,11 @@ def gym_classes(member):
     results = run_sql(sql, values)
 
     for row in results:
-        gym_class = Gym_class(row['name'], row['category'], row['id'])
+        gym_class = Gym_class(row['name'], row['category'], row['date'], row['time'], row['duration'], row['id'])
         gym_classes.append(gym_class)
     return gym_classes
+
+def update(member):
+    sql = "UPDATE members SET (name) = (%s) WHERE id = %s"
+    values = [member.name, member.id]
+    run_sql(sql, values)

@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.gym_class import Gym_class
 import repositories.gym_class_repository as gym_class_repository
+import repositories.member_repository as member_repository
+import pdb
 
 gym_classes_blueprint = Blueprint("gym_classes", __name__)
 
@@ -25,6 +27,27 @@ def new_class():
 def create_task():
     name = request.form['class_name']
     category = request.form['category']
-    gym_class = Gym_class(name, category)
+    date = request.form['date']
+    time = request.form['time']
+    duration = request.form['duration']
+    gym_class = Gym_class(name, category, date, time, duration)
     gym_class_repository.save(gym_class)
+    return redirect('/gym_classes')
+
+@gym_classes_blueprint.route("/gym_classes/<id>/edit", methods=['GET'])
+def update_class(id):
+    gym_class = gym_class_repository.select(id)
+    return render_template("gym_classes/edit.html", gym_class = gym_class)
+
+@gym_classes_blueprint.route("/gym_classes/<id>",  methods=['POST'])
+def edit_task(id):
+    id = id
+    name = request.form['class_name']
+    category = request.form['category']
+    date = request.form['date']
+    time = request.form['time']
+    duration = request.form['duration']
+    gym_class = Gym_class(name, category, date, time, duration, id)
+    # pdb.set_trace()
+    gym_class_repository.update(gym_class)
     return redirect('/gym_classes')

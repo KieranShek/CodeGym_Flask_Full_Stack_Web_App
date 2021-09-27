@@ -3,22 +3,20 @@
 {% block content %}
 <h1>Book a Class</h1>
 
-<form action="/gym_classes" method="post">
+<form action="/gym_classes/{{gym_class.id}}" method="post">
   
-    <label for="class_name">Enter Class Name:</label>
+    <label for="class_name">Class Name:</label>
     <textarea name="class_name" id="class_name" cols="2" rows="2"></textarea>
     
-    <label for="category">Enter a Category:</label>
+    <label for="category">Category:</label>
     <textarea name="category" id="category" cols="2" rows="2"></textarea>
 
-    <label for="meeting-time">Choose a time for the class:</label>
-
-    <label for="date">Start date:</label>
+    <label for="date">Date:</label>
     <input type="date" id="date" name="date"
            value="2018-07-22"
            min="2018-01-01" max="2018-12-31">
 
-    <label for="time">Choose a time for your meeting:</label>
+    <label for="time">Time:</label>
     <input type="time" id="time" name="time"
           min="09:00" max="18:00" required>
     <small>Office hours are 9am to 6pm</small>

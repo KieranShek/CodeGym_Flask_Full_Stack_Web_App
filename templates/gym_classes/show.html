@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> {{gym_class.name}} </h1>
+<h1> {{gym_class.name}} </h1> 
+
+  <td><a href="/gym_classes/{{ gym_class.id }}/edit"> Edit </a></td>
 
 <p>Category: {{ gym_class.category }}</p>
 

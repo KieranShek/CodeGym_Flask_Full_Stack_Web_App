@@ -20,10 +20,10 @@ member_repository.save(member2)
 member3 = Member('Jen')
 member_repository.save(member3)
 
-gym_class1 = Gym_class('Spin Class', 'Cardio')
+gym_class1 = Gym_class('Spin Class', 'Cardio', '2018-07-22', '09:00', 10)
 gym_class_repository.save(gym_class1)
 
-gym_class2 = Gym_class('Leg Day', 'Strength Training')
+gym_class2 = Gym_class('Leg Day', 'Strength Training', '2018-07-22', '09:00', 30)
 gym_class_repository.save(gym_class2)
 
 booking1 = Booking(member1, gym_class1)
@@ -37,6 +37,8 @@ booking_repository.save(booking3)
 
 booking4 = Booking(member2, gym_class2)
 booking_repository.save(booking4)
+
+select_all_classes = gym_class_repository.select_all()
 
 # pdb.set_trace()
 # print(member_repository.select_all()[0].id)
