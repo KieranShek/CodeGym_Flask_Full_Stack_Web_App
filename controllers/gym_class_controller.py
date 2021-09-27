@@ -40,7 +40,7 @@ def update_class(id):
     return render_template("gym_classes/edit.html", gym_class = gym_class)
 
 @gym_classes_blueprint.route("/gym_classes/<id>",  methods=['POST'])
-def edit_task(id):
+def edit_class(id):
     id = id
     name = request.form['class_name']
     category = request.form['category']
@@ -48,6 +48,10 @@ def edit_task(id):
     time = request.form['time']
     duration = request.form['duration']
     gym_class = Gym_class(name, category, date, time, duration, id)
-    # pdb.set_trace()
     gym_class_repository.update(gym_class)
+    return redirect('/gym_classes')
+
+@gym_classes_blueprint.route("/gym_classes/<id>/delete", methods=['POST'])
+def delete_class(id):
+    gym_class_repository.delete(id)
     return redirect('/gym_classes')

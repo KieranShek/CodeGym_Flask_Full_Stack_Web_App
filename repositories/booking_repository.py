@@ -29,7 +29,6 @@ def select_all():
         bookings.append(booking)
     return bookings
 
-
 def delete_all():
     sql = "DELETE FROM bookings"
     run_sql(sql)

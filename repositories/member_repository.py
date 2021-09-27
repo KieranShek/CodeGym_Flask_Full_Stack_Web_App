@@ -9,7 +9,6 @@ def save(member):
     member.id = results[0]['id']
     return member
 
-
 def select_all():
     members = []
 
@@ -20,7 +19,6 @@ def select_all():
         members.append(member)
     return members
 
-
 def select(id):
     member = None
     sql = "SELECT * FROM members WHERE id = %s"
@@ -28,14 +26,12 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-        member = Member(result['name'], result['id'] )
+        member = Member(result['name'], result['id'])
     return member
-
 
 def delete_all():
     sql = "DELETE FROM members"
     run_sql(sql)
-
 
 def gym_classes(member):
     gym_classes = []
@@ -49,6 +45,16 @@ def gym_classes(member):
     return gym_classes
 
 def update(member):
-    sql = "UPDATE members SET (name) = (%s) WHERE id = %s"
+    sql = "UPDATE members SET name = %s WHERE id = %s"
     values = [member.name, member.id]
     run_sql(sql, values)
+
+
+def delete(id):
+    sql = "DELETE  FROM members WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
+
+def delete_all():
+    sql = "DELETE FROM members"
+    run_sql(sql)

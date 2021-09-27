@@ -13,12 +13,23 @@
     <th>Name</th>
     <th></th>
     <th>Category</th>
+    <th></th>
+    <th>Date</th>
+    <th></th>
+    <th>Start Time</th>
   </tr>
   {% for gym_class in gym_classes %}
   <tr>
     <td><a href="/gym_classes/{{ gym_class.id }}"> {{gym_class.name}} </a></td>
     <td>|</td>
     <td>{{ gym_class.category }}</td>
+    <td>|</td>
+    <td>{{ gym_class.date }}</td>
+    <td>|</td>
+    <td>{{ gym_class.time }}</td>
+    <td><form action="/gym_classes/{{ gym_class.id }}/delete" method="POST">
+      <input class="btn btn--danger" type="submit" value="Delete" />
+    </form></td>
   </tr>
   {% endfor %}
 </table>
