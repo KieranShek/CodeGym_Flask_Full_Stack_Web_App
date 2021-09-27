@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Book a Class</h1>
+
+<form action="/gym_classes" method="post">
+  
+    <label for="class_name">Enter Class Name:</label>
+    <textarea name="class_name" id="class_name" cols="2" rows="2"></textarea>
+    
+    <label for="category">Enter A Category:</label>
+    <textarea name="category" id="category" cols="2" rows="2"></textarea>
+
+  <input gym_class="btn btn--action" type='submit' value="submit">
+</form>
+
+{% endblock %}

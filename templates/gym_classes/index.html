@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Classes</h1>
+
+<table>
+
+  <p gym_class="btn--wrapper">
+    <a gym_class="btn btn--action" href="/gym_classes/new">Add a Class</a>
+  </p>  
+
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th>Category</th>
+  </tr>
+  {% for gym_class in gym_classes %}
+  <tr>
+    <td><a href="/gym_classes/{{ gym_class.id }}"> {{gym_class.name}} </a></td>
+    <td>|</td>
+    <td>{{ gym_class.category }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
