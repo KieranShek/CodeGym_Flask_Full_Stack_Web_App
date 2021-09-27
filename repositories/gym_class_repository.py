@@ -45,7 +45,7 @@ def members(gym_class):
     results = run_sql(sql, values)
 
     for row in results:
-        member = Member(row['name'])
+        member = Member(row['name'], row['type'])
         members.append(member)
     return members
 

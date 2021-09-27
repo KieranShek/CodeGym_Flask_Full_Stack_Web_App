@@ -3,8 +3,8 @@ from models.gym_class import Gym_class
 from models.member import Member
 
 def save(member):
-    sql = "INSERT INTO members( name ) VALUES ( %s ) RETURNING id"
-    values = [member.name]
+    sql = "INSERT INTO members( name, type ) VALUES ( %s, %s ) RETURNING id"
+    values = [member.name, member.type]
     results = run_sql( sql, values )
     member.id = results[0]['id']
     return member
@@ -15,7 +15,7 @@ def select_all():
     sql = "SELECT * FROM members"
     results = run_sql(sql)
     for row in results:
-        member = Member(row['name'], row['id'])
+        member = Member(row['name'], row['type'], row['id'])
         members.append(member)
     return members
 
@@ -26,7 +26,7 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-        member = Member(result['name'], result['id'])
+        member = Member(result['name'], result['type'], result['id'])
     return member
 
 def delete_all():
@@ -45,8 +45,8 @@ def gym_classes(member):
     return gym_classes
 
 def update(member):
-    sql = "UPDATE members SET name = %s WHERE id = %s"
-    values = [member.name, member.id]
+    sql = "UPDATE members SET (name, type) = (%s, %s) WHERE id = %s"
+    values = [member.name, member.type, member.id]
     run_sql(sql, values)
 
 

@@ -6,6 +6,8 @@
 <table>
   <tr>
     <th>Name</th>
+    <th></th>
+    <th>Membership</th>
     <p gym_class="btn--wrapper">
       <a gym_class="btn btn--action" href="/members/new">Add a member</a>
     </p>
@@ -13,6 +15,8 @@
   {% for member in members %}
   <tr>
     <td><a href="/members/{{ member.id }}"> {{member.name}} </a></td>
+    <td>|</td>
+    <td>{{ member.type}}</td>
   </tr>
   {% endfor %}
 </table>

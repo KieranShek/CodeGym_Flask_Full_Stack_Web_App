@@ -11,13 +11,13 @@ booking_repository.delete_all()
 gym_class_repository.delete_all()
 member_repository.delete_all()
 
-member1 = Member('Steve')
+member1 = Member('Steve', 'premium')
 member_repository.save(member1)
 
-member2 = Member('Stan')
+member2 = Member('Stan', 'standard')
 member_repository.save(member2)
 
-member3 = Member('Jen')
+member3 = Member('Jen', 'premium')
 member_repository.save(member3)
 
 gym_class1 = Gym_class('Spin Class', 'Cardio', '2018-07-22', '09:00', 10)
