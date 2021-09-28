@@ -40,7 +40,6 @@ def update_member(id):
 def edit_member(id):
     name = request.form['member_name']
     member = Member(name, int(id))
-    # pdb.set_trace()
     member_repository.update(member)
     return redirect('/members')
 

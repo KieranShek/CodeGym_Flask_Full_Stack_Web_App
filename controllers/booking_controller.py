@@ -25,12 +25,24 @@ def create_booking():
     gym_class_id = request.form['gym_class_id']
     member = member_repository.select(member_id)
     gym_class = gym_class_repository.select(gym_class_id)
-    # now = datetime.datetime.now()
-    # if now.hour == 6 and now.minute == 20:
-    #     print("It's 6:20!")
-    booking = Booking(member, gym_class)
-    booking_repository.save(booking)
-    return redirect('/bookings')
+    if member.type.lower() == "premium":
+        booking = Booking(member, gym_class)
+        try:
+            booking_repository.save(booking)
+        except:
+            return render_template("bookings/error.html", gym_class = gym_class, member = member)
+        return redirect('/bookings')
+    elif gym_class.time > datetime.time(8, 0) and gym_class.time < datetime.time(10,0):
+        return render_template("bookings/error.html", gym_class = gym_class, member = member)
+    elif gym_class.time > datetime.time(16, 0) and gym_class.time < datetime.time(18,0):
+        return render_template("bookings/error.html", gym_class = gym_class, member = member)
+    else:
+        booking = Booking(member, gym_class)
+        try:
+            booking_repository.save(booking)
+        except:
+            return render_template("bookings/error.html", gym_class = gym_class, member = member)
+        return redirect('/bookings')
 
 @bookings_blueprint.route("/bookings/<id>/delete", methods=['POST'])
 def delete_task(id):

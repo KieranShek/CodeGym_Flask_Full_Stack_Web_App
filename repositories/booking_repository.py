@@ -10,10 +10,18 @@ def save(booking):
         VALUES ( %s, %s) 
         RETURNING id
     """
+
     values = [booking.member.id, booking.gym_class.id]
     results = run_sql( sql, values )
     booking.id = results[0]['id']
     return booking
+
+# def save(booking):
+#     sql = f"select count(*) from bookings where gym_class_id = {booking.gym_class.id};"
+#     values = [booking.member.id, booking.gym_class.id]
+#     results = run_sql( sql, values )
+#     booking.id = results[0]['id']
+#     return booking
 
 
 def select_all():
