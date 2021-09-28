@@ -9,17 +9,17 @@ def save(gym_class):
     gym_class.id = results[0]['id']
     return gym_class
 
-# def check_capacity(gym_class):
-#     check_capacity = f"select count(*) from bookings where gym_class_id = {gym_class.id};"
-#     checked_capacity = run_sql(check_capacity)
-#     empty_list = []
-#     empty_list.append(checked_capacity[0][0])
-#     if checked_capacity[0][0] >= gym_class.capacity:
-#         empty_list.append("Full")
-#         return empty_list
-#     else:
-#         empty_list.append("Spaces")
-#         return empty_list
+def check_capacity(gym_class):
+    check_capacity = f"select count(*) from bookings where gym_class_id = {gym_class.id};"
+    checked_capacity = run_sql(check_capacity)
+    empty_list = []
+    empty_list.append(checked_capacity[0][0])
+    if checked_capacity[0][0] >= gym_class.capacity:
+        empty_list.append("Full")
+        return empty_list
+    else:
+        empty_list.append("Spaces")
+        return empty_list
 
 
 def select_all():

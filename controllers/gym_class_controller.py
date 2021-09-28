@@ -9,8 +9,11 @@ gym_classes_blueprint = Blueprint("gym_classes", __name__)
 
 @gym_classes_blueprint.route("/gym_classes")
 def gym_classes():
+    capacities = []
     gym_classes = gym_class_repository.select_all() 
-    return render_template("gym_classes/index.html", gym_classes = gym_classes)
+    for gym_class in gym_classes:
+        capacities.append(gym_class_repository.check_capacity(gym_class))
+    return render_template("gym_classes/index.html", gym_classes = gym_classes, capacities = capacities)
 
 @gym_classes_blueprint.route("/gym_classes/<id>")
 def show(id):

@@ -30,11 +30,13 @@
     <td>|</td>
     <td>{{ gym_class.time }}</td>
     <td>|</td>
-    <td>{{ gym_class.capacity }}</td>
+    <td>{{ capacities[gym_classes.index(gym_class)][0] }}/{{ gym_class.capacity }}</td>
+    <td>|</td>
     <td><form action="/gym_classes/{{ gym_class.id }}/delete" method="POST">
       <input class="btn btn--danger" type="submit" value="Delete" />
     </form></td>
   </tr>
   {% endfor %}
+
 </table>
 {% endblock %}
