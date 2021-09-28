@@ -17,6 +17,8 @@
     <th>Date</th>
     <th></th>
     <th>Start Time</th>
+    <th></th>
+    <th>Capacity</th>
   </tr>
   {% for gym_class in gym_classes %}
   <tr>
@@ -27,6 +29,8 @@
     <td>{{ gym_class.date }}</td>
     <td>|</td>
     <td>{{ gym_class.time }}</td>
+    <td>|</td>
+    <td>{{ gym_class.capacity }}</td>
     <td><form action="/gym_classes/{{ gym_class.id }}/delete" method="POST">
       <input class="btn btn--danger" type="submit" value="Delete" />
     </form></td>

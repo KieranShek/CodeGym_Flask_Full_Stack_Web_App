@@ -3,11 +3,23 @@ from models.gym_class import Gym_class
 from models.member import Member
 
 def save(gym_class):
-    sql = "INSERT INTO gym_classes(name, category, date, time, duration) VALUES ( %s, %s, %s, %s, %s ) RETURNING id"
-    values = [gym_class.name, gym_class.category, gym_class.date, gym_class.time, gym_class.duration]
+    sql = "INSERT INTO gym_classes(name, category, date, time, duration, capacity) VALUES ( %s, %s, %s, %s, %s, %s ) RETURNING id"
+    values = [gym_class.name, gym_class.category, gym_class.date, gym_class.time, gym_class.duration, gym_class.capacity]
     results = run_sql( sql, values )
     gym_class.id = results[0]['id']
     return gym_class
+
+# def check_capacity(gym_class):
+#     check_capacity = f"select count(*) from bookings where gym_class_id = {gym_class.id};"
+#     checked_capacity = run_sql(check_capacity)
+#     empty_list = []
+#     empty_list.append(checked_capacity[0][0])
+#     if checked_capacity[0][0] >= gym_class.capacity:
+#         empty_list.append("Full")
+#         return empty_list
+#     else:
+#         empty_list.append("Spaces")
+#         return empty_list
 
 
 def select_all():
@@ -17,7 +29,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        gym_class = Gym_class(row['name'], row['category'], row['date'], row['time'], row['duration'], row['id'])
+        gym_class = Gym_class(row['name'], row['category'], row['date'], row['time'], row['duration'], row['capacity'], row['id'])
         gym_classes.append(gym_class)
     return gym_classes
 
@@ -29,7 +41,7 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-        gym_class = Gym_class(result['name'], result['category'], result['date'], result['time'], result['duration'], result['id'] )
+        gym_class = Gym_class(result['name'], result['category'], result['date'], result['time'], result['duration'], result['capacity'], result['id'] )
     return gym_class
 
 
@@ -50,8 +62,8 @@ def members(gym_class):
     return members
 
 def update(gym_class):
-    sql = "UPDATE gym_classes SET (name, category, date, time, duration) = (%s, %s, %s, %s, %s) WHERE id = %s"
-    values = [gym_class.name, gym_class.category, gym_class.date, gym_class.time, gym_class.duration, gym_class.id]
+    sql = "UPDATE gym_classes SET (name, category, date, time, duration, capacity) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [gym_class.name, gym_class.category, gym_class.date, gym_class.time, gym_class.duration, gym_class.capacity, gym_class.id]
     run_sql(sql, values)
 
 def delete(id):

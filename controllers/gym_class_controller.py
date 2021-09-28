@@ -30,7 +30,8 @@ def create_task():
     date = request.form['date']
     time = request.form['time']
     duration = request.form['duration']
-    gym_class = Gym_class(name, category, date, time, duration)
+    capacity = request.form['capacity']
+    gym_class = Gym_class(name, category, date, time, duration, capacity)
     gym_class_repository.save(gym_class)
     return redirect('/gym_classes')
 
@@ -47,7 +48,8 @@ def edit_class(id):
     date = request.form['date']
     time = request.form['time']
     duration = request.form['duration']
-    gym_class = Gym_class(name, category, date, time, duration, id)
+    capacity = request.form['capacity']
+    gym_class = Gym_class(name, category, date, time, duration, capacity, id)
     gym_class_repository.update(gym_class)
     return redirect('/gym_classes')
 
