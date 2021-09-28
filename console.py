@@ -35,13 +35,13 @@ member_repository.save(member7)
 member8 = Member('Lewis', 'premium')
 member_repository.save(member8)
 
-gym_class1 = Gym_class('Spin Class', 'Cardio', '2018-07-22', '09:00', 10, 10)
+gym_class1 = Gym_class('Spin Class', 'Cardio', '2022-07-22', '09:00', 10, 10)
 gym_class_repository.save(gym_class1)
 
-gym_class2 = Gym_class('Leg Day', 'Strength Training', '2018-07-22', '09:00', 30, 10)
+gym_class2 = Gym_class('Leg Day', 'Strength Training', '2022-07-22', '09:00', 30, 10)
 gym_class_repository.save(gym_class2)
 
-gym_class3 = Gym_class('Arm Day', 'Strength Training', '2018-07-22', '12:00', 30, 4)
+gym_class3 = Gym_class('Arm Day', 'Strength Training', '2022-07-22', '12:00', 30, 4)
 gym_class_repository.save(gym_class3)
 
 booking1 = Booking(member1, gym_class3)

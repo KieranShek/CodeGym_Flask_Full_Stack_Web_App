@@ -14,7 +14,7 @@
   <label for="gym_class">Select a Class:</label>
     <select name="gym_class_id" id="gym_class">
       {% for gym_class in gym_classes %}
-      <option value="{{ gym_class.id }}">{{ gym_class.name }}</option>
+      <option value="{{ gym_class.id }}">{{ gym_class.name }} ({{ capacities[gym_classes.index(gym_class)][0] }}/{{ gym_class.capacity }})</option>
       {% endfor %}
     </select>
     <!-- <label for="review">Date & Time:</label>

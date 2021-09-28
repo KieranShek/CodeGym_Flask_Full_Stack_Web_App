@@ -16,9 +16,12 @@ def bookings():
 
 @bookings_blueprint.route("/bookings/new", methods=['GET'])
 def new_booking():
+    capacities = []
     members = member_repository.select_all()
     gym_classes = gym_class_repository.select_all()
-    return render_template("bookings/new.html", members = members, gym_classes = gym_classes)
+    for gym_class in gym_classes:
+        capacities.append(gym_class_repository.check_capacity(gym_class))
+    return render_template("bookings/new.html", members = members, gym_classes = gym_classes, capacities = capacities)
 
 @bookings_blueprint.route("/bookings",  methods=['POST'])
 def create_booking():
@@ -34,7 +37,7 @@ def create_booking():
             try:
                 booking_repository.save(booking)
             except:
-                return render_template("bookings/error.html", gym_class = gym_class, member = member)
+                return render_template("bookings/error_duplicate.html", gym_class = gym_class, member = member)
             return redirect('/bookings')
         elif gym_class.time > datetime.time(8, 0) and gym_class.time < datetime.time(10,0):
             return render_template("bookings/error.html", gym_class = gym_class, member = member)
@@ -44,7 +47,7 @@ def create_booking():
             try:
                 booking_repository.save(booking)
             except:
-                return render_template("bookings/error.html", gym_class = gym_class, member = member)
+                return render_template("bookings/error_duplicate.html", gym_class = gym_class, member = member)
             return redirect('/bookings')
     else:
         return render_template("bookings/error_capacity.html", gym_class = gym_class, member = member, class_capacity = check[0])
