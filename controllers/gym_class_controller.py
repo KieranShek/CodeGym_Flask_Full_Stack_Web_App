@@ -44,9 +44,13 @@ def create_task():
     time = request.form['time']
     duration = request.form['duration']
     capacity = request.form['capacity']
-    gym_class = Gym_class(name, instructor, date, time, duration, capacity)
-    gym_class_repository.save(gym_class)
-    return redirect('/gym_classes')
+    staff_member = staff_member_repository.select(instructor)
+    if staff_member.job_type == "Instructor" or staff_member.job_type == "Manager":
+        gym_class = Gym_class(name, instructor, date, time, duration, capacity)
+        gym_class_repository.save(gym_class)
+        return redirect('/gym_classes')
+    else:
+        return render_template("gym_classes/error_permissions.html", staff_member = staff_member)
 
 @gym_classes_blueprint.route("/gym_classes/<id>/edit", methods=['GET'])
 def update_class(id):
