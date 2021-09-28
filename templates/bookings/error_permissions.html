@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table>
+    
+    <tr>
+    <th>Unable to book {{ member.name }} into {{ gym_class.name }}</th>
+    <th>{{ member.name}}'s membership is not active</th>
+
+  </tr>
+</table>
+
+{% endblock %}

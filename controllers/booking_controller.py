@@ -37,11 +37,13 @@ def create_booking():
                 booking_repository.save(booking)
             except:
                 return render_template("bookings/error_duplicate.html", gym_class = gym_class, member = member)
-            return redirect('/bookings')
+            # return redirect('/bookings')
+        elif member.type.lower() == "deactivated":
+            return render_template("bookings/error_permissions.html", gym_class = gym_class, member = member)
         elif gym_class.time > datetime.time(8, 0) and gym_class.time < datetime.time(10,0):
-            return render_template("bookings/error.html", gym_class = gym_class, member = member)
+            return render_template("bookings/error_peak_hours.html", gym_class = gym_class, member = member)
         elif gym_class.time > datetime.time(16, 0) and gym_class.time < datetime.time(18,0):
-            return render_template("bookings/error.html", gym_class = gym_class, member = member)
+            return render_template("bookings/error_peak_hours.html", gym_class = gym_class, member = member)
         else:
             try:
                 booking_repository.save(booking)
