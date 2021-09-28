@@ -10,7 +10,7 @@ CREATE TABLE members (
 
 CREATE TABLE gym_classes (
   id SERIAL PRIMARY KEY,
-  category VARCHAR(255),
+  instructor VARCHAR(255),
   name VARCHAR(255),
   date DATE,
   time TIME,
@@ -23,4 +23,10 @@ CREATE TABLE bookings (
   member_id INT REFERENCES members(id) ON DELETE CASCADE,
   gym_class_id INT REFERENCES gym_classes(id) ON DELETE CASCADE,
   UNIQUE(member_id, gym_class_id)
+);
+
+CREATE TABLE staff_members (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  job_type VARCHAR(255)
 );

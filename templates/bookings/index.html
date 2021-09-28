@@ -16,7 +16,7 @@
   {% for booking in bookings %}
   <tr>
     <td><a href="/bookings/{{ booking.id }}"> {{booking.name}} </a></td>
-    <td>{{ booking.member.name}} - {{ booking.gym_class.name }}</td>
+    <td>{{ booking.member.name}} - {{ booking.gym_class.name }} - {{ booking.gym_class.date }} - {{ booking.gym_class.time }}</td>
     <td><form action="/bookings/{{ booking.id }}/delete" method="POST">
       <input class="btn btn--danger" type="submit" value="Delete" /></form></td>
   </tr>

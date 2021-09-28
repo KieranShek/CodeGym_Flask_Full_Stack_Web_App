@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Staff Members</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th>job_type</th>
+    <p gym_class="btn--wrapper">
+      <a gym_class="btn btn--action" href="/staff_members/new">Add a member</a>
+    </p>
+  </tr>
+  {% for staff_member in staff_members %}
+  <tr>
+    <td><a href="/staff_members/{{ staff_member.id }}"> {{staff_member.name}} </a></td>
+    <td>|</td>
+    <td>{{ staff_member.job_type}}</td>
+    <td><form action="/staff_members/{{ staff_member.id }}/delete" method="POST">
+      <input class="btn btn--danger" type="submit" value="Delete" /></form></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

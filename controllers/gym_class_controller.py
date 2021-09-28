@@ -4,6 +4,8 @@ from models.gym_class import Gym_class
 import repositories.gym_class_repository as gym_class_repository
 import repositories.member_repository as member_repository
 import repositories.booking_repository as booking_repository
+import repositories.staff_member_repository as staff_member_repository
+from datetime import datetime
 
 
 gym_classes_blueprint = Blueprint("gym_classes", __name__)
@@ -25,17 +27,18 @@ def show(id):
 @gym_classes_blueprint.route("/gym_classes/new", methods=['GET'])
 def new_class():
     gym_class = gym_class_repository.select_all()
-    return render_template("gym_classes/new.html", gym_class = gym_class)
+    staff_members = staff_member_repository.select_all()
+    return render_template("gym_classes/new.html", gym_class = gym_class, staff_members = staff_members)
 
 @gym_classes_blueprint.route("/gym_classes",  methods=['POST'])
 def create_task():
     name = request.form['class_name']
-    category = request.form['category']
+    instructor = request.form['instructor']
     date = request.form['date']
     time = request.form['time']
     duration = request.form['duration']
     capacity = request.form['capacity']
-    gym_class = Gym_class(name, category, date, time, duration, capacity)
+    gym_class = Gym_class(name, instructor, date, time, duration, capacity)
     gym_class_repository.save(gym_class)
     return redirect('/gym_classes')
 
@@ -48,12 +51,12 @@ def update_class(id):
 def edit_class(id):
     id = id
     name = request.form['class_name']
-    category = request.form['category']
+    instructor = request.form['instructor']
     date = request.form['date']
     time = request.form['time']
     duration = request.form['duration']
     capacity = request.form['capacity']
-    gym_class = Gym_class(name, category, date, time, duration, capacity, id)
+    gym_class = Gym_class(name, instructor, date, time, duration, capacity, id)
     gym_class_repository.update(gym_class)
     return redirect('/gym_classes')
 
