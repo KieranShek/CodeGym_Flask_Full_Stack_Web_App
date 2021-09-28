@@ -3,22 +3,26 @@
 {% block content %}
 <h1>Bookings</h1>
 
-<p gym_class="btn--wrapper">
-  <a gym_class="btn btn--action" href="/bookings/new">Book a Class</a>
-</p>
 
-<ul>
-  {% for booking in bookings %}
-  <li>
-  <p>{{ booking.member.name }} - {{ booking.gym_class.name }} </p>
-    <p>
-      <form action="/bookings/{{ booking.id }}/delete" method="POST">
-        <input gym_class="btn btn--danger" type="submit" value="delete" />
-      </form>
+
+
+<table>
+  <tr>
+
+    <p gym_class="btn--wrapper">
+      <a gym_class="btn btn--action" href="/bookings/new">Book Class</a>
     </p>
-  </li>
+  </tr>
+  {% for booking in bookings %}
+  <tr>
+    <td><a href="/bookings/{{ booking.id }}"> {{booking.name}} </a></td>
+    <td>{{ booking.member.name}} - {{ booking.gym_class.name }}</td>
+    <td><form action="/bookings/{{ booking.id }}/delete" method="POST">
+      <input class="btn btn--danger" type="submit" value="Delete" /></form></td>
+  </tr>
   {% endfor %}
-</ul>
+</table>
+
 
 
 {% endblock %}

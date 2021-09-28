@@ -11,6 +11,8 @@
 <ul>
     {% for member in members %}
         <li>{{member.name}}</li>
+        <td><form action="/gym_classes/{{ gym_class.id }}/{{member.id}}/delete" method="POST">
+            <input class="btn btn--danger" type="submit" value="Delete"/>
     {% endfor %}
 </ul>
 

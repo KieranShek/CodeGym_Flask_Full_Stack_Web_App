@@ -50,3 +50,9 @@ def delete(id):
     sql = "DELETE FROM bookings WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def delete_member_from_class(class_id, member_id):
+    sql = "DELETE FROM bookings WHERE class_id = %s AND member_id = %s"
+    values = [class_id, member_id]
+    # pdb.set_trace()
+    run_sql(sql, values)

@@ -14,14 +14,10 @@
   <label for="gym_class">Select a Class:</label>
     <select name="gym_class_id" id="gym_class">
       {% for gym_class in gym_classes %}
-      <option value="{{ gym_class.id }}">{{ gym_class.name }} ({{ capacities[gym_classes.index(gym_class)][0] }}/{{ gym_class.capacity }})</option>
+      <option value="{{ gym_class.id }}">{{ gym_class.name }} {{ gym_class.date }} {{ gym_class.time }}({{ capacities[gym_classes.index(gym_class)][0] }}/{{ gym_class.capacity }})</option>
       {% endfor %}
     </select>
-    <!-- <label for="review">Date & Time:</label>
-    <textarea name="review" id="review" cols="2" rows="2"></textarea>
 
-  <label for="notes">Notes:</label>
-  <textarea name="notes" id="notes" cols="40" rows="6"></textarea> -->
   <input gym_class="btn btn--action" type='submit' value="submit">
 </form>
 

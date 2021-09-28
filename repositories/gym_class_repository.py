@@ -57,7 +57,7 @@ def members(gym_class):
     results = run_sql(sql, values)
 
     for row in results:
-        member = Member(row['name'], row['type'])
+        member = Member(row['name'], row['type'], row['id'])
         members.append(member)
     return members
 
@@ -70,3 +70,11 @@ def delete(id):
     sql = "DELETE FROM gym_classes WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def find_booking_id(class_id, member_id):
+    sql = "SELECT id FROM bookings WHERE gym_class_id = %s AND member_id = %s"
+    values = [class_id, member_id]
+    # pdb.set_trace()
+    booking_id = run_sql(sql, values)[0]
+    return booking_id
+

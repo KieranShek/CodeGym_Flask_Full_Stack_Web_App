@@ -3,7 +3,8 @@ from flask import Blueprint
 from models.gym_class import Gym_class
 import repositories.gym_class_repository as gym_class_repository
 import repositories.member_repository as member_repository
-import pdb
+import repositories.booking_repository as booking_repository
+
 
 gym_classes_blueprint = Blueprint("gym_classes", __name__)
 
@@ -59,4 +60,10 @@ def edit_class(id):
 @gym_classes_blueprint.route("/gym_classes/<id>/delete", methods=['POST'])
 def delete_class(id):
     gym_class_repository.delete(id)
+    return redirect('/gym_classes')
+
+@gym_classes_blueprint.route("/gym_classes/<class_id>/<member_id>/delete", methods=['POST'])
+def delete_from_class(class_id, member_id):
+    id = gym_class_repository.find_booking_id(int(class_id), int(member_id))
+    booking_repository.delete(id[0])
     return redirect('/gym_classes')
