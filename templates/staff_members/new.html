@@ -3,15 +3,16 @@
 {% block content %}
 <h1>Book a Class</h1>
 
-<form action="/members" method="post">
+<form action="/staff_members" method="post">
   
-    <label for="member_name">Enter Name:</label>
-    <textarea name="member_name" id="member_name" cols="2" rows="2"></textarea>
+    <label for="staff_member_name">Enter Name:</label>
+    <textarea name="staff_member_name" id="staff_member_name" cols="2" rows="1"></textarea>
 
-    <label for="type">Membership Type:</label>
-    <select name="type" id="type">
-        <option value="Standard">Standard</option>
-      <option value="Premium">Premium</option>
+    <label for="job_type">Job Role:</label>
+    <select name="job_type" id="job_type">
+        <option value="Instructor">Instructor</option>
+      <option value="Manager">Manager</option>
+      <option value="Cleaner">Cleaner</option>
     </select>
 
   <input member="btn btn--action" type='submit' value="submit">

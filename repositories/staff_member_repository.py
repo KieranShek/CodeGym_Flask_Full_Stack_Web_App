@@ -20,8 +20,8 @@ def select_all():
     return list_of_staff
 
 def select(id):
-    staff = None
-    sql = "SELECT * FROM staff WHERE id = %s"
+    staff_member = None
+    sql = "SELECT * FROM staff_members WHERE id = %s"
     values = [id]
     result = run_sql(sql, values)[0]
 
@@ -35,8 +35,9 @@ def delete_all():
 
 def gym_classes(staff_member):
     gym_classes = []
-    sql = "SELECT gym_classes.* FROM gym_classes INNER JOIN bookings ON bookings.gym_class_id = gym_classes.id WHERE staff_member_id = %s"
-    values = [staff_member.id]
+    # sql = "SELECT gym_classes.* FROM gym_classes INNER JOIN bookings ON bookings.gym_class_id = gym_classes.id WHERE instructor = %s"
+    sql = "SELECT gym_classes.* FROM gym_classes WHERE gym_classes.instructor = %s;"
+    values = [staff_member.name]
     results = run_sql(sql, values)
 
     for row in results:

@@ -33,13 +33,13 @@ def create_staff_member():
 @staff_members_blueprint.route("/staff_members/<id>/edit", methods=['GET'])
 def update_staff_member(id):
     staff_member = staff_member_repository.select(id)
-
     return render_template("staff_members/edit.html", staff_member = staff_member)
 
 @staff_members_blueprint.route("/staff_members/<id>",  methods=['POST'])
 def edit_staff_member(id):
     name = request.form['staff_member_name']
-    staff_member = Staff_Member(name, int(id))
+    job_type = request.form['job_type']
+    staff_member = Staff_Member(name, job_type, id)
     staff_member_repository.update(staff_member)
     return redirect('/staff_members')
 

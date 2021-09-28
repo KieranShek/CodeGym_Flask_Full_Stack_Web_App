@@ -31,7 +31,6 @@ def create_booking():
     gym_class = gym_class_repository.select(gym_class_id)
     booking = Booking(member, gym_class)
     check = booking_repository.check_capacity(booking)
-    # class_capacity = check[0]
     if check[1] == "Spaces":
         if member.type.lower() == "premium":
             try:

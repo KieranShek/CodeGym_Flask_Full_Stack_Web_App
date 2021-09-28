@@ -5,7 +5,9 @@
 
   <td><a href="/gym_classes/{{ gym_class.id }}/edit"> Edit </a></td>
 
-<p>instructor: {{ gym_class.instructor }}</p>
+<p>Hosted by: {{ instructors[(gym_class.instructor)-1].name }}</p>
+
+<p>Current capacity: {{ capacities[0][0] }}/{{ gym_class.capacity }}</p>
 
 <h3>Attended by:</h3>
 <ul>

@@ -24,7 +24,7 @@
   <tr>
     <td><a href="/gym_classes/{{ gym_class.id }}"> {{gym_class.name}} </a></td>
     <td>|</td>
-    <td>{{ gym_class.instructor }}</td>
+    <td>{{ instructors[(gym_class.instructor)-1].name }}</td>
     <td>|</td>
     <td>{{ gym_class.date }}</td>
     <td>|</td>

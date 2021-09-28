@@ -6,6 +6,7 @@ import repositories.member_repository as member_repository
 import repositories.booking_repository as booking_repository
 import repositories.staff_member_repository as staff_member_repository
 from datetime import datetime
+import pdb
 
 
 gym_classes_blueprint = Blueprint("gym_classes", __name__)
@@ -13,16 +14,21 @@ gym_classes_blueprint = Blueprint("gym_classes", __name__)
 @gym_classes_blueprint.route("/gym_classes")
 def gym_classes():
     capacities = []
+    instructors = staff_member_repository.select_all()
     gym_classes = gym_class_repository.select_all() 
     for gym_class in gym_classes:
         capacities.append(gym_class_repository.check_capacity(gym_class))
-    return render_template("gym_classes/index.html", gym_classes = gym_classes, capacities = capacities)
+    return render_template("gym_classes/index.html", gym_classes = gym_classes, capacities = capacities, instructors = instructors)
 
 @gym_classes_blueprint.route("/gym_classes/<id>")
 def show(id):
+    capacities = []
     gym_class = gym_class_repository.select(id)
     members = gym_class_repository.members(gym_class)
-    return render_template("gym_classes/show.html", members=members, gym_class = gym_class)
+    instructors = staff_member_repository.select_all()
+    gym_classes = gym_class_repository.select_all()
+    capacities.append(gym_class_repository.check_capacity(gym_class))
+    return render_template("gym_classes/show.html", members=members, gym_class = gym_class, gym_classes=gym_classes, capacities=capacities, instructors = instructors)
 
 @gym_classes_blueprint.route("/gym_classes/new", methods=['GET'])
 def new_class():
@@ -45,7 +51,8 @@ def create_task():
 @gym_classes_blueprint.route("/gym_classes/<id>/edit", methods=['GET'])
 def update_class(id):
     gym_class = gym_class_repository.select(id)
-    return render_template("gym_classes/edit.html", gym_class = gym_class)
+    staff_members = staff_member_repository.select_all()
+    return render_template("gym_classes/edit.html", gym_class = gym_class, staff_members = staff_members)
 
 @gym_classes_blueprint.route("/gym_classes/<id>",  methods=['POST'])
 def edit_class(id):

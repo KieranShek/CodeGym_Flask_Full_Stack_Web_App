@@ -1,6 +1,7 @@
 DROP TABLE bookings;
 DROP TABLE members;
 DROP TABLE gym_classes;
+DROP TABLE staff_members;
 
 CREATE TABLE members (
   id SERIAL PRIMARY KEY,
@@ -10,7 +11,7 @@ CREATE TABLE members (
 
 CREATE TABLE gym_classes (
   id SERIAL PRIMARY KEY,
-  instructor VARCHAR(255),
+  instructor INT,
   name VARCHAR(255),
   date DATE,
   time TIME,
