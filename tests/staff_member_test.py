@@ -2,7 +2,7 @@ import unittest
 
 from repositories.staff_member_repository import *
 
-class TestMember(unittest.TestCase):
+class TestStaff_Member(unittest.TestCase):
 
     def setUp(self):
         self.staff_member = Staff_Member('Steve', 'Instructor')

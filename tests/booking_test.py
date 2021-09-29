@@ -5,7 +5,7 @@ from repositories.member_repository import *
 from repositories.gym_class_repository import *
 from repositories.staff_member_repository import *
 
-class TestMember(unittest.TestCase):
+class TestBooking(unittest.TestCase):
 
     def setUp(self):
         member1 = Member('Jack', 'Premium')

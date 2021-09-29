@@ -4,7 +4,6 @@
 <h1>Create a Class</h1>
 
 <table>
-
 <form action="/gym_classes" method="post">
   
     <label for="class_name">Class Name:</label>
@@ -17,24 +16,22 @@
         {% endfor %}
       </select>
 
-    <label for="date">Date:</label>
+    <label for="date">              Date:</label>
     <input type="date" id="date" name="date"
            value="2021-10-28"
            min="2021-010-028" max="2022-10-28">
-
-    <label for="time">Time:</label>
+    <label for="time">              Time:</label>
     <input type="time" id="time" name="time"
           min="00:00" max="23:59" required>
-      <small>Peak hours are from 8am to 10am and from 4pm to 6pm</small>
+
   
-    <label for="duration">Duration:</label>
+    <label for="duration">                Duration:</label>
     <input type="number" id="duration" name="duration">
-    <label for="capacity">Capacity:</label>
+    <label for="capacity">              Capacity:</label>
     <input type="number" id="capacity" name="capacity">
 
   <input gym_class="btn btn--action" type='submit' value="submit">
 </form>
-
 </table>
 
 {% endblock %}

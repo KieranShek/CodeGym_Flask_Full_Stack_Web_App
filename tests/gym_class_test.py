@@ -2,7 +2,7 @@ import unittest
 
 from repositories.gym_class_repository import *
 
-class TestMember(unittest.TestCase):
+class TestGym_Class(unittest.TestCase):
 
     def setUp(self):
         self.gym_class = Gym_class('Arm Day', 3, '2021-08-30', '12:00', 60, 12)
