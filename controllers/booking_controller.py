@@ -37,7 +37,7 @@ def create_booking():
                 booking_repository.save(booking)
             except:
                 return render_template("bookings/error_duplicate.html", gym_class = gym_class, member = member)
-            # return redirect('/bookings')
+            return redirect('/bookings')
         elif member.type.lower() == "deactivated":
             return render_template("bookings/error_permissions.html", gym_class = gym_class, member = member)
         elif gym_class.time > datetime.time(8, 0) and gym_class.time < datetime.time(10,0):

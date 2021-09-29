@@ -78,13 +78,13 @@ member_repository.save(member20)
 member21 = Member('Alex', 'Premium')
 member_repository.save(member21)
 
-gym_class1 = Gym_class('Spin Class', 1, '2022-07-22', '09:00', 45, 10)
+gym_class1 = Gym_class('Spin Class', 1, '2021-09-01', '09:00', 45, 10)
 gym_class_repository.save(gym_class1)
 
-gym_class2 = Gym_class('Leg Day', 2, '2022-07-22', '09:00', 60, 8)
+gym_class2 = Gym_class('Leg Day', 2, '2021-09-01', '09:00', 60, 8)
 gym_class_repository.save(gym_class2)
 
-gym_class3 = Gym_class('Arm Day', 3, '2022-07-22', '12:00', 60, 12)
+gym_class3 = Gym_class('Arm Day', 3, '2021-08-30', '12:00', 60, 12)
 gym_class_repository.save(gym_class3)
 
 staff1 = Staff_Member('Steve', 'Instructor')
