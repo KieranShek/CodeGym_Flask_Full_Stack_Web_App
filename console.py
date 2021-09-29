@@ -102,6 +102,12 @@ staff_member_repository.save(staff4)
 staff5 = Staff_Member('Pete', 'Instructor')
 staff_member_repository.save(staff5)
 
+staff6 = Staff_Member('Jeffrey', 'Manager')
+staff_member_repository.save(staff6)
+
+staff7 = Staff_Member('Gymkeeper Willie', 'Cleaner')
+staff_member_repository.save(staff7)
+
 booking1 = Booking(member1, gym_class2)
 booking_repository.save(booking1)
 
