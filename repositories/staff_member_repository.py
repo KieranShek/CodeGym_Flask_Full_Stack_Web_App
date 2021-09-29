@@ -1,6 +1,7 @@
 from db.run_sql import run_sql
 from models.gym_class import Gym_class
 from models.staff_member import Staff_Member
+import pdb
 
 def save(staff_member):
     sql = "INSERT INTO staff_members( name, job_type ) VALUES ( %s, %s ) RETURNING id"
@@ -35,9 +36,8 @@ def delete_all():
 
 def gym_classes(staff_member):
     gym_classes = []
-    # sql = "SELECT gym_classes.* FROM gym_classes INNER JOIN bookings ON bookings.gym_class_id = gym_classes.id WHERE instructor = %s"
     sql = "SELECT gym_classes.* FROM gym_classes WHERE gym_classes.instructor = %s;"
-    values = [staff_member.name]
+    values = [staff_member.id]
     results = run_sql(sql, values)
 
     for row in results:

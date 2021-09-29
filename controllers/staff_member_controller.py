@@ -15,7 +15,8 @@ def staff_members():
 def show(id):
     staff_member = staff_member_repository.select(id)
     gym_classes = staff_member_repository.gym_classes(staff_member)
-    return render_template("staff_members/show.html", staff_member=staff_member, gym_classes = gym_classes)
+    # pdb.set_trace()
+    return render_template("staff_members/show.html", staff_member = staff_member, gym_classes = gym_classes)
 
 @staff_members_blueprint.route("/staff_members/new", methods=['GET'])
 def new_staff_member():
